@@ -1,0 +1,9 @@
+﻿<Application x:Class="Skill_level_assessment_for_MCK_KTITS.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Skill_level_assessment_for_MCK_KTITS"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

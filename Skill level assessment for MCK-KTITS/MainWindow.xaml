@@ -1,0 +1,27 @@
+﻿<Window x:Class="Skill_level_assessment_for_MCK_KTITS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Skill_level_assessment_for_MCK_KTITS"
+        mc:Ignorable="d"
+        Title="Skill_level_assessment_for_MCK_KTITS" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem>
+                <TabItem.Header>
+                    <Label Content="Бланки"/>
+                </TabItem.Header>
+                <Frame x:Name="blanksFrame">
+                    
+                </Frame>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Label Content="Редактирование данных"/>
+                </TabItem.Header>
+                <Frame x:Name="dataEditFrame"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

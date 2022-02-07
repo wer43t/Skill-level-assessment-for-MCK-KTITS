@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skill level assessment for MCK-KTITS", "Skill level assessment for MCK-KTITS\Skill level assessment for MCK-KTITS.csproj", "{1A6C8605-8624-41F7-B439-E7F7A0337432}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillAssesmentCore", "SkillAssesmentCore\SkillAssesmentCore.csproj", "{EC45CF47-9A24-415F-98B8-B7CA1F3229B5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A6C8605-8624-41F7-B439-E7F7A0337432}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A6C8605-8624-41F7-B439-E7F7A0337432}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A6C8605-8624-41F7-B439-E7F7A0337432}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A6C8605-8624-41F7-B439-E7F7A0337432}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC45CF47-9A24-415F-98B8-B7CA1F3229B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC45CF47-9A24-415F-98B8-B7CA1F3229B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC45CF47-9A24-415F-98B8-B7CA1F3229B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC45CF47-9A24-415F-98B8-B7CA1F3229B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3FA1E9BC-1335-4D53-82DA-2FD2ED4FB72C}
+	EndGlobalSection
+EndGlobal
