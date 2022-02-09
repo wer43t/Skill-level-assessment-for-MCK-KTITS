@@ -25,7 +25,7 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
         public InstitutionPage()
         {
             InitializeComponent();
-            dgInstitutions.ItemsSource = core.GetInstitutions();
+            UpdateDate();
         }
 
         private void dgInstitutions_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -39,6 +39,40 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
             {
                 e.Column.Visibility = Visibility.Collapsed;
             }
+        }
+
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnApply_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void cmBoxDistricts_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+        }
+
+        private void UpdateDate()
+        {
+            dgInstitutions.ItemsSource = core.GetInstitutions();
+            foreach(var districts in core.GetDiscticts())
+            {
+                cmBoxDistricts.Items.Add(districts.name.ToString());
+            }
+        }
+
+        private void cmBoxDistricts_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            UpdateDate();
         }
     }
 }
