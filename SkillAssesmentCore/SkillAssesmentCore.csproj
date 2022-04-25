@@ -51,16 +51,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categories.cs">
-      <DependentUpon>ktitsDB.tt</DependentUpon>
+      <DependentUpon>ktitsLocalDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Core.cs" />
     <Compile Include="DBContext.cs" />
     <Compile Include="Discticts.cs">
-      <DependentUpon>ktitsDB.tt</DependentUpon>
+      <DependentUpon>ktitsLocalDB.tt</DependentUpon>
     </Compile>
     <Compile Include="IdenticalException.cs" />
     <Compile Include="Institution.cs">
-      <DependentUpon>ktitsDB.tt</DependentUpon>
+      <DependentUpon>ktitsLocalDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ktitsDB.Context.cs">
       <AutoGen>True</AutoGen>
@@ -77,15 +77,30 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ktitsDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ktitsLocalDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ktitsLocalDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ktitsLocalDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ktitsLocalDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ktitsLocalDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ktitsLocalDB.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Posts.cs">
-      <DependentUpon>ktitsDB.tt</DependentUpon>
+      <DependentUpon>ktitsLocalDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Subjects.cs">
-      <DependentUpon>ktitsDB.tt</DependentUpon>
+      <DependentUpon>ktitsLocalDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Teachers.cs">
-      <DependentUpon>ktitsDB.tt</DependentUpon>
+      <DependentUpon>ktitsLocalDB.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +111,13 @@
     </EntityDeploy>
     <None Include="ktitsDB.edmx.diagram">
       <DependentUpon>ktitsDB.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="ktitsLocalDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ktitsLocalDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ktitsLocalDB.edmx.diagram">
+      <DependentUpon>ktitsLocalDB.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -112,6 +134,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ktitsDB.edmx</DependentUpon>
       <LastGenOutput>ktitsDB.cs</LastGenOutput>
+    </Content>
+    <Content Include="ktitsLocalDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ktitsLocalDB.edmx</DependentUpon>
+      <LastGenOutput>ktitsLocalDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ktitsLocalDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ktitsLocalDB.edmx</DependentUpon>
+      <LastGenOutput>ktitsLocalDB.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

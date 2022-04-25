@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SkillAssesmentCore;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using SkillAssesmentCore;
 
 namespace Skill_level_assessment_for_MCK_KTITS.SubPages
 {
@@ -21,11 +11,12 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
     /// </summary>
     public partial class InstitutionPage : Page
     {
+        ObservableCollection<Discticts> discticts;
         Core core = new Core();
         public InstitutionPage()
         {
             InitializeComponent();
-            UpdateDate();
+            UpdateDate(core.GetInstitutions());
         }
 
         private void dgInstitutions_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -44,7 +35,21 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            foreach (var instituiton in dgInstitutions.SelectedItems)
+            {
+                if (instituiton != CollectionView.NewItemPlaceholder)
+                {
+                    if (MessageBox.Show($"Вы действильно хотите удалить {(instituiton as Institution).name}?", "Подтверждение удаления", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        core.RemoveInstitutions(instituiton as Institution);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Удаление отменено");
+                    }
+                }
+            }
+            dgInstitutions.ItemsSource = core.GetInstitutions();
         }
 
         private void btnApply_Click(object sender, RoutedEventArgs e)
@@ -54,25 +59,48 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            
+            Add();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            UpdateDate(core.GetInstitutions());
         }
 
         private void cmBoxDistricts_ContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
+
         }
 
-        private void UpdateDate()
+        private void UpdateDate(ObservableCollection<Institution> institutions)
         {
-            dgInstitutions.ItemsSource = core.GetInstitutions();
-            foreach(var districts in core.GetDiscticts())
-            {
-                cmBoxDistricts.Items.Add(districts.name.ToString());
-            }
+            dgInstitutions.ItemsSource = institutions;
+            discticts = core.GetDiscticts();
+            cmBoxDistricts.ItemsSource = discticts;
+
         }
 
         private void cmBoxDistricts_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            UpdateDate();
+            UpdateDate(core.GetInstitutions());
+        }
+
+        private void dgInstitutions_AddingNewItem(object sender, AddingNewItemEventArgs e)
+        {
+            Add();
+        }
+
+        private void Add()
+        {
+            Window window = new DialogWindows.Window1();
+            window.Show();
+            window.Closing += Window_Closing;
+        }
+
+        private void cmBoxDistricts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var filteredData = core.GetInstitutionsOrderDistrict(cmBoxDistricts.SelectedItem as Discticts);
+            UpdateDate(filteredData);
         }
     }
 }

@@ -1,48 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SkillAssesmentCore
 {
     public class Core
     {
+        public delegate void AddNewItemDelegate();
+        public static event AddNewItemDelegate AddNewItemEvent;
+
         public ObservableCollection<Discticts> Discticts { get; set; }
 
         public ObservableCollection<Institution> Institutions { get; set; }
 
+        public ObservableCollection<Posts> Posts { get; set; }
+
+        public ObservableCollection<Subjects> Subjects { get; set; }
+
+        public ObservableCollection<Categories> Categories { get; set; }
+
+        public ObservableCollection<Teachers> Teachers { get; set; }
+
         public ObservableCollection<Discticts> GetDiscticts()
         {
-            return Discticts = new ObservableCollection<Discticts>(DBContext.connection.Discticts.ToList());
+            return Discticts = new ObservableCollection<Discticts>(DBContext.localConnection.Discticts.ToList());
         }
 
         public void AddDisctics(string name)
         {
-            Discticts discticts = new Discticts();
-            discticts.name = name;
-            if(GetDiscticts().FirstOrDefault(i => i.name == discticts.name) == null)
+            Discticts discticts = new Discticts()
             {
-                DBContext.connection.Discticts.Add(discticts);
+                name = name
+            };
+
+            if (GetDiscticts().FirstOrDefault(i => i.name == discticts.name) == null)
+            {
+                DBContext.localConnection.Discticts.Add(discticts);
             }
             else
             {
                 throw new IdenticalException("Данная запись уже существует в БД");
             }
-            DBContext.connection.SaveChanges();
+            DBContext.localConnection.SaveChanges();
         }
 
         public void RemoveDisctics(Discticts disctict)
         {
             Discticts discticts;
-            using(var context = new Entities())
+            using (var context = new Entities1())
             {
                 discticts = context.Discticts.Where(d => d.name == disctict.name).FirstOrDefault();
             }
-            if(discticts != null)
+            if (discticts != null)
             {
-                using (var context = new Entities())
+                using (var context = new Entities1())
                 {
                     context.Discticts.Attach(discticts);
                     context.Discticts.Remove(discticts);
@@ -53,7 +65,205 @@ namespace SkillAssesmentCore
 
         public ObservableCollection<Institution> GetInstitutions()
         {
-            return Institutions = new ObservableCollection<Institution>(DBContext.connection.Institution.ToList());
+            return Institutions = new ObservableCollection<Institution>(DBContext.localConnection.Institution.ToList());
+        }
+
+        public void AddInstitution(Institution institution)
+        {
+            if (GetInstitutions().FirstOrDefault(i => i.name == institution.name) == null)
+            {
+                DBContext.localConnection.Institution.Add(institution);
+            }
+            else
+            {
+                throw new IdenticalException("Данная запись уже существует в БД");
+            }
+            DBContext.localConnection.SaveChanges();
+        }
+
+        public void RemoveInstitutions(Institution institution)
+        {
+            Institution tempInstitution;
+            using (var context = new Entities())
+            {
+                tempInstitution = context.Institution.Where(d => d.name == institution.name).FirstOrDefault();
+            }
+            if (tempInstitution != null)
+            {
+                using (var context = new Entities())
+                {
+                    context.Institution.Attach(tempInstitution);
+                    context.Institution.Remove(tempInstitution);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public ObservableCollection<Institution> GetInstitutionsOrderDistrict(Discticts discticts)
+        {
+            var institutions = new ObservableCollection<Institution>(DBContext.localConnection.Institution.ToList()).Where(x => x.disctrict_id == discticts.disctrict_id);
+            return Institutions = new ObservableCollection<Institution>(institutions);
+        }
+
+        public ObservableCollection<Posts> GetPosts()
+        {
+            return Posts = new ObservableCollection<Posts>(DBContext.localConnection.Posts);
+        }
+
+        public void AddPosts(string name)
+        {
+            Posts post = new Posts()
+            {
+                name = name
+            };
+            if (GetPosts().FirstOrDefault(i => i.name == post.name) == null)
+            {
+                DBContext.localConnection.Posts.Add(post);
+            }
+            else
+            {
+                throw new IdenticalException("Данная запись уже существует в БД");
+            }
+            DBContext.localConnection.SaveChanges();
+        }
+
+        public void RemovePosts(Posts post)
+        {
+            Posts tempPost;
+            using (var context = new Entities1())
+            {
+                tempPost = context.Posts.Where(d => d.name == post.name).FirstOrDefault();
+            }
+            if (tempPost != null)
+            {
+                using (var context = new Entities1())
+                {
+                    context.Posts.Attach(tempPost);
+                    context.Posts.Remove(tempPost);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public ObservableCollection<Subjects> GetSubjects()
+        {
+            return Subjects = new ObservableCollection<Subjects>(DBContext.localConnection.Subjects);
+        }
+
+        public void AddSubject(string name)
+        {
+            Subjects subject = new Subjects()
+            {
+                name = name
+            };
+            if (GetSubjects().FirstOrDefault(i => i.name == subject.name) == null)
+            {
+                DBContext.localConnection.Subjects.Add(subject);
+            }
+            else
+            {
+                throw new IdenticalException("Данная запись уже существует в БД");
+            }
+            DBContext.localConnection.SaveChanges();
+        }
+
+
+        public void RemoveSubject(Subjects subject)
+        {
+            Subjects tempSubject;
+            using (var context = new Entities1())
+            {
+                tempSubject = context.Subjects.Where(d => d.name == subject.name).FirstOrDefault();
+            }
+            if (tempSubject != null)
+            {
+                using (var context = new Entities1())
+                {
+                    context.Subjects.Attach(tempSubject);
+                    context.Subjects.Remove(tempSubject);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+
+        public ObservableCollection<Categories> GetCategories()
+        {
+            return Categories = new ObservableCollection<Categories>(DBContext.localConnection.Categories);
+        }
+
+        public void AddCategory(string name)
+        {
+            Categories category = new Categories()
+            {
+                name = name
+            };
+            if (GetCategories().FirstOrDefault(i => i.name == category.name) == null)
+            {
+                DBContext.localConnection.Categories.Add(category);
+            }
+            else
+            {
+                throw new IdenticalException("Данная запись уже существует в БД");
+            }
+            DBContext.localConnection.SaveChanges();
+        }
+
+        public void RemoveCategory(Categories category)
+        {
+            Categories tempCategory;
+            using (var context = new Entities())
+            {
+                tempCategory = context.Categories.Where(d => d.name == category.name).FirstOrDefault();
+            }
+            if (category != null)
+            {
+                using (var context = new Entities())
+                {
+                    context.Categories.Attach(tempCategory);
+                    context.Categories.Remove(tempCategory);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public ObservableCollection<Teachers> GetTeachers()
+        {
+            return Teachers = new ObservableCollection<Teachers>(DBContext.localConnection.Teachers);
+        }
+
+        public void AddTeachers(Teachers teacher)
+        {
+            if (teacher != null)
+                DBContext.localConnection.Teachers.Add(teacher);
+            DBContext.localConnection.SaveChanges();
+            AddNewItemEvent?.Invoke();
+        }
+
+        public void RemoveTeachers(Teachers teacher)
+        {
+            Teachers tempTeacher;
+            using (var context = new Entities1())
+            {
+                tempTeacher = context.Teachers.Where(d => d.teacher_id == teacher.teacher_id).FirstOrDefault();
+            }
+            if (tempTeacher != null)
+            {
+                using (var context = new Entities1())
+                {
+                    context.Teachers.Attach(tempTeacher);
+                    context.Teachers.Remove(tempTeacher);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public List<ValidationResult> ValidateTeacher(Teachers teacher)
+        {
+            var results = new List<ValidationResult>();
+            var context = new ValidationContext(teacher);
+            Validator.TryValidateObject(teacher, context, results, true);
+            return results;
         }
     }
 }

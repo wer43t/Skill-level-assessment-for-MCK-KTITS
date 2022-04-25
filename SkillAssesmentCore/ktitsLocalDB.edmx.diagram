@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="eacfa834ead04260a9988a91ea04ccdf" Name="Diagram1">
+        <EntityTypeShape EntityType="ktitsLocalDB.Categories" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ktitsLocalDB.Discticts" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ktitsLocalDB.Institution" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ktitsLocalDB.Posts" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ktitsLocalDB.Subjects" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ktitsLocalDB.Teachers" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="ktitsLocalDB.FK_Teachers_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="ktitsLocalDB.FK_Teachers_Discticts" ManuallyRouted="false" />
+        <AssociationConnector Association="ktitsLocalDB.FK_Teachers_Institution" ManuallyRouted="false" />
+        <AssociationConnector Association="ktitsLocalDB.FK_Teachers_Posts" ManuallyRouted="false" />
+        <AssociationConnector Association="ktitsLocalDB.FK_Teachers_Subjects" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

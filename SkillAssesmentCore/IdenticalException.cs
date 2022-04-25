@@ -12,6 +12,7 @@ namespace SkillAssesmentCore
 
         public IdenticalException(string message) : base(message)
         {
+
         }
 
         public IdenticalException(string message, Exception innerException) : base(message, innerException)

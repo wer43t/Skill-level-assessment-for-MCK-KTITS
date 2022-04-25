@@ -26,21 +26,25 @@
                 <TabItem.Header>
                     <Label Content="Должности"></Label>
                 </TabItem.Header>
+                <Frame x:Name="postsFrame"/>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
                     <Label Content="Предметы"></Label>
                 </TabItem.Header>
+                <Frame x:Name="subjectsFrame"/>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
                     <Label Content="Категории"></Label>
                 </TabItem.Header>
+                <Frame x:Name="categoriesFrame"/>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
                     <Label Content="Учителя"></Label>
                 </TabItem.Header>
+                <Frame x:Name="teachersFrame"/>
             </TabItem>
         </TabControl>
     </Grid>
