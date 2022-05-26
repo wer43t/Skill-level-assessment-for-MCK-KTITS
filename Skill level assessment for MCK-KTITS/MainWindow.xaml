@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Skill_level_assessment_for_MCK_KTITS"
         mc:Ignorable="d"
-        Title="Skill_level_assessment_for_MCK_KTITS" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="800">
     <Grid>
         <TabControl>
             <TabItem>
@@ -13,7 +13,7 @@
                     <Label Content="Бланки"/>
                 </TabItem.Header>
                 <Frame x:Name="blanksFrame">
-                    
+
                 </Frame>
             </TabItem>
             <TabItem>
@@ -21,6 +21,12 @@
                     <Label Content="Редактирование данных"/>
                 </TabItem.Header>
                 <Frame x:Name="dataEditFrame"/>
+            </TabItem>
+            <TabItem x:Name="tabAdmin" Visibility="Hidden">
+                <TabItem.Header>
+                    <Label Content="Админ-панель"/>
+                </TabItem.Header>
+                <Frame x:Name="adminEditFrame"/>
             </TabItem>
         </TabControl>
     </Grid>

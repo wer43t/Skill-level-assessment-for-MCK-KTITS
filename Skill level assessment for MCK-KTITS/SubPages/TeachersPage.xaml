@@ -6,13 +6,9 @@
       xmlns:local="clr-namespace:Skill_level_assessment_for_MCK_KTITS.SubPages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TeachersPage">
-    <Page.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Height" Value="30"></Setter>
-            <Setter Property="Height" Value="30"/>
-        </Style>
-    </Page.Resources>
+      Title="TeachersPage"
+      x:Name="pageVsible">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -26,8 +22,8 @@
             <ScrollViewer Grid.Row="1" Height="248">
                 <DataGrid x:Name="dgTeachers" ItemsSource="{Binding Teachers}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Фамилия" Binding="{Binding name}"/>
-                        <DataGridTextColumn Header="Имя" Binding="{Binding surname}"/>
+                        <DataGridTextColumn Header="Фамилия" Binding="{Binding surname}"/>
+                        <DataGridTextColumn Header="Имя" Binding="{Binding name}"/>
                         <DataGridTextColumn Header="Отчество" Binding="{Binding patronymic}"/>
                         <DataGridTextColumn Header="Учреждение" Binding="{Binding Institution.name}"/>
                         <DataGridTextColumn Header="Должность" Binding="{Binding Posts.name}"/>
@@ -38,11 +34,11 @@
             </ScrollViewer>
             <Label x:Name="lbTeachersCount" Content="{Binding teachersCount}"></Label>
         </StackPanel>
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" FlowDirection="LeftToRight" Margin="20">
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" FlowDirection="LeftToRight" Margin="20 0">
             <Button Content="➕" Margin="10 0" x:Name="btnAdd"  Click="btnAdd_Click"/>
             <Button Content="✖" x:Name="btnDelete" Click="btnDelete_Click"/>
             <Button Content="✔" Margin="10 0" x:Name="btnApply" Click="btnApply_Click"/>
-            <Button Width="100" Margin="30 0" x:Name="btnCreateTeacher" Content="Новая запись" Click="btnCreateTeacher_Click"/>
+            <Button Margin="30 0" x:Name="btnCreateTeacher" Content="Новая запись" Click="btnCreateTeacher_Click"/>
             </StackPanel>
     </Grid>
 </Page>

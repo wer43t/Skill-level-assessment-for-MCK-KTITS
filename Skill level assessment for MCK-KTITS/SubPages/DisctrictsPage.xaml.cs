@@ -16,6 +16,9 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
         {
             InitializeComponent();
             dgDisctricts.ItemsSource = core.GetDiscticts();
+            lbDistrictsCount.Content = $"Количество записей: {core.GetDiscticts().Count}";
+            if (CurrentUser.User.role_id == 3)
+                pageVsible.IsEnabled = false;
         }
 
         private void dgDisctricts_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -53,6 +56,8 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
                     }
                 }
             }
+            dgDisctricts.ItemsSource = core.GetDiscticts();
+            lbDistrictsCount.Content = $"Количество записей: {core.GetDiscticts().Count}";
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -72,6 +77,7 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
                 }
             }
             dgDisctricts.ItemsSource = core.GetDiscticts();
+            lbDistrictsCount.Content = $"Количество записей: {core.GetDiscticts().Count}";
         }
     }
 }

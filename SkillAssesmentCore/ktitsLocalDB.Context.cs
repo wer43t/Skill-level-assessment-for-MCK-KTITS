@@ -31,5 +31,7 @@ namespace SkillAssesmentCore
         public virtual DbSet<Posts> Posts { get; set; }
         public virtual DbSet<Subjects> Subjects { get; set; }
         public virtual DbSet<Teachers> Teachers { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

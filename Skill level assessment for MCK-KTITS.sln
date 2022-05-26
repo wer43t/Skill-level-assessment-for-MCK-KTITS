@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skill level assessment for 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillAssesmentCore", "SkillAssesmentCore\SkillAssesmentCore.csproj", "{EC45CF47-9A24-415F-98B8-B7CA1F3229B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizzModuleCore", "..\QuizzModuleWpf\QuizzModuleCore\QuizzModuleCore.csproj", "{F77037DE-E69F-42F4-9A08-471D7F8B622C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizzModuleWpf", "..\QuizzModuleWpf\QuizzModuleWpf\QuizzModuleWpf.csproj", "{712BD490-0E45-457F-A767-0BC4138C1EEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillLevelAssismentApi", "SkillLevelAssismentApi\SkillLevelAssismentApi.csproj", "{C0002BD6-9AC0-4B48-AC98-21BFF9124285}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +27,18 @@ Global
 		{EC45CF47-9A24-415F-98B8-B7CA1F3229B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC45CF47-9A24-415F-98B8-B7CA1F3229B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC45CF47-9A24-415F-98B8-B7CA1F3229B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F77037DE-E69F-42F4-9A08-471D7F8B622C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F77037DE-E69F-42F4-9A08-471D7F8B622C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F77037DE-E69F-42F4-9A08-471D7F8B622C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F77037DE-E69F-42F4-9A08-471D7F8B622C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{712BD490-0E45-457F-A767-0BC4138C1EEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{712BD490-0E45-457F-A767-0BC4138C1EEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{712BD490-0E45-457F-A767-0BC4138C1EEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{712BD490-0E45-457F-A767-0BC4138C1EEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0002BD6-9AC0-4B48-AC98-21BFF9124285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0002BD6-9AC0-4B48-AC98-21BFF9124285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0002BD6-9AC0-4B48-AC98-21BFF9124285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0002BD6-9AC0-4B48-AC98-21BFF9124285}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

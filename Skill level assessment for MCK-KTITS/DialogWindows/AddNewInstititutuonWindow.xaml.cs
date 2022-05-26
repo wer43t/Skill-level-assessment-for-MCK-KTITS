@@ -1,4 +1,5 @@
 ﻿using SkillAssesmentCore;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 
@@ -27,7 +28,14 @@ namespace Skill_level_assessment_for_MCK_KTITS.DialogWindows
                     name = tBoxInstitutuonName.Text,
                     disctrict_id = (cmBoxDisctricts.SelectedItem as Discticts).disctrict_id
                 };
+                try
+                {
                 core.AddInstitution(institution);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             this.Close();
         }

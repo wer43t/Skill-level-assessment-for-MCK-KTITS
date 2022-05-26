@@ -7,5 +7,6 @@ namespace Skill_level_assessment_for_MCK_KTITS
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

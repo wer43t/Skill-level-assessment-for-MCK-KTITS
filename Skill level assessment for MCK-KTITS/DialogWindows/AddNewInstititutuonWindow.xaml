@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Skill_level_assessment_for_MCK_KTITS.DialogWindows"
         mc:Ignorable="d"
-        Title="Новое учреждение" Height="248.749" Width="500.938" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+        Title="Новое учреждение" Height="250.749" Width="500.938" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.ColumnDefinitions>
 
@@ -22,7 +22,6 @@
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding name}">
-
                         </Label>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
@@ -30,8 +29,8 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Label Content="Введите название учреждения" VerticalContentAlignment="Center" Padding="0 0 14 0"/>
-            <TextBox x:Name="tBoxInstitutuonName" Width="300" Margin="1 4"/>
+            <TextBox x:Name="tBoxInstitutuonName" Width="300"/>
         </StackPanel>
-        <Button Grid.Row="3" Content="Внести изменения" Margin="10 6" x:Name="btnApply" Click="btnApply_Click"/>
+        <Button Grid.Row="3" Content="Внести изменения" x:Name="btnApply" Click="btnApply_Click"/>
     </Grid>
 </Window>

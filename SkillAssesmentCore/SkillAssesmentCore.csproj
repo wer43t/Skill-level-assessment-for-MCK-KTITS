@@ -54,6 +54,7 @@
       <DependentUpon>ktitsLocalDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Core.cs" />
+    <Compile Include="CurrentUser.cs" />
     <Compile Include="DBContext.cs" />
     <Compile Include="Discticts.cs">
       <DependentUpon>ktitsLocalDB.tt</DependentUpon>
@@ -96,10 +97,16 @@
       <DependentUpon>ktitsLocalDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs">
+      <DependentUpon>ktitsLocalDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Subjects.cs">
       <DependentUpon>ktitsLocalDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Teachers.cs">
+      <DependentUpon>ktitsLocalDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
       <DependentUpon>ktitsLocalDB.tt</DependentUpon>
     </Compile>
   </ItemGroup>

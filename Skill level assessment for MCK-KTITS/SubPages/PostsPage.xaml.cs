@@ -12,10 +12,14 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
     public partial class PostsPage : Page
     {
         Core core = new Core();
+        public int postsCount { get; set; }
         public PostsPage()
         {
             InitializeComponent();
             dgPosts.ItemsSource = core.GetPosts();
+            lbPostsCount.Content = $"Количество записей: {core.GetPosts().Count}";
+            if (CurrentUser.User.role_id == 3)
+                pageVsible.IsEnabled = false;
         }
 
         private void dgPosts_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -53,6 +57,7 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
                 }
             }
             dgPosts.ItemsSource = core.GetPosts();
+            lbPostsCount.Content = $"Количество записей: {core.GetPosts().Count}";
         }
 
         private void btnApply_Click(object sender, RoutedEventArgs e)
@@ -72,6 +77,8 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
                     }
                 }
             }
+            dgPosts.ItemsSource = core.GetPosts();
+            lbPostsCount.Content = $"Количество записей: {core.GetPosts().Count}";
         }
     }
 }

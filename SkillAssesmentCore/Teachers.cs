@@ -13,28 +13,25 @@ namespace SkillAssesmentCore
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-
     public partial class Teachers
     {
-        
         public int teacher_id { get; set; }
         [Required(ErrorMessage = "Не выбран район")]
         public Nullable<int> disctict_id { get; set; }
-        [Required(ErrorMessage = "Не выбран район")]
+        [Required(ErrorMessage = "Не выбрано учебное учреждение")]
         public Nullable<int> institution_id { get; set; }
-        [Required(ErrorMessage = "Не выбран район")]
+        [Required(ErrorMessage = "Не выбран должность")]
         public Nullable<int> post_id { get; set; }
-        [Required(ErrorMessage = "Не выбран район")]
+        [Required(ErrorMessage = "Не выбран предмет")]
         public Nullable<int> subject_id { get; set; }
-        [Required(ErrorMessage = "Не выбран район")]
+        [Required(ErrorMessage = "Не выбрана квалификация")]
         public Nullable<int> categories_id { get; set; }
         [Required(ErrorMessage = "Поле фамилия не заполнено")]
         public string surname { get; set; }
         [Required(ErrorMessage = "Поле имя не заполнено")]
-        [Display(Name = "Имя")]
         public string name { get; set; }
         public string patronymic { get; set; }
-    
+
         public virtual Categories Categories { get; set; }
         public virtual Discticts Discticts { get; set; }
         public virtual Institution Institution { get; set; }

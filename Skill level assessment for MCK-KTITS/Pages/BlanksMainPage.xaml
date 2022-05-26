@@ -14,14 +14,10 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="20 0 0 0"/>
         </Style>
-        <Style TargetType="Button">
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Margin" Value="30 0"/>
-        </Style>
     </Page.Resources>
     <Grid>
         <TabControl>
-            <TabItem>
+            <TabItem HorizontalAlignment="Left">
                 <TabItem.Header>
                     <Label Content="Квалификации педагогических работников"/>
                 </TabItem.Header>
@@ -47,15 +43,41 @@
                         <TextBlock Grid.Row="3" Grid.Column="0" Text="Выберите учреждение:"/>
                         <TextBlock Grid.Row="3" Grid.Column="0" Text="Выберите учителя:"/>
                     </StackPanel>
-                    <TextBox Grid.Row="0" Grid.Column="1" Height="30" Margin="5 0" x:Name="tBoxExpert"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Height="30" Margin="5 0" x:Name="tBoxExpert" IsEnabled="False"/>
                     <StackPanel Grid.Row="2" Grid.Column="1" Grid.RowSpan="3" Margin="5 0 5 0">
-                        <ComboBox Margin="0 5 0 5" x:Name="cmBoxDistrict" SelectionChanged="cmBoxDistrict_SelectionChanged"/>
-                        <ComboBox Margin="0 0 0 5" x:Name="cmBoxInstitution" SelectionChanged="cmBoxInstitution_SelectionChanged"/>
-                        <ComboBox Margin="0 0 0 5" x:Name="cmBoxTeacher" SelectionChanged="cmBoxTeacher_SelectionChanged"/>
+                        <ComboBox Margin="0 5 0 5" x:Name="cmBoxDistrict" SelectionChanged="cmBoxDistrict_SelectionChanged" ItemsSource="{Binding Districts}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox Margin="0 0 0 5" x:Name="cmBoxInstitution" SelectionChanged="cmBoxInstitution_SelectionChanged" ItemsSource="{Binding Institutions}" IsEnabled="False">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox Margin="0 0 0 5" x:Name="cmBoxTeacher" SelectionChanged="cmBoxTeacher_SelectionChanged" ItemsSource="{Binding Teachers}" IsEnabled="False">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0} {1} {2}">
+                                                <Binding Path="surname"/>
+                                                <Binding Path="name"/>
+                                                <Binding Path="patronymic"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                     </StackPanel>
-                    <Button Grid.Row="4" Content="Начать тестирование" x:Name="btnStart"/>
-                    <Button Grid.Row="5" Content="Предпросмотр в Excel" x:Name="btnExport"/>
-                    <Button Grid.Row="6" Content="Печать экспертного листа" x:Name="btnPrinting"/>
+                    <Button Grid.Row="4" Content="Начать тестирование" x:Name="btnStart" Click="btnStart_Click" IsEnabled="False"/>
+                    <Button Grid.Row="5" Content="Предпросмотр в Excel" x:Name="btnExport" Click="btnExport_Click" IsEnabled="False"/>
+                    <Button Grid.Row="6" Content="Печать экспертного листа" x:Name="btnPrinting" IsEnabled="False"/>
                 </Grid>
             </TabItem>
         </TabControl>

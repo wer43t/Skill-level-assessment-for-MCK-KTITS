@@ -12,10 +12,14 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
     public partial class SubjectsPage : Page
     {
         Core core = new Core();
+        public int subjectsCount { get; set; }
         public SubjectsPage()
         {
             InitializeComponent();
             dgSubjects.ItemsSource = core.GetSubjects();
+            lbSubjectsCount.Content = $"Количество записей: {core.GetSubjects().Count}";
+            if (CurrentUser.User.role_id == 3)
+                pageVsible.IsEnabled = false;
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -24,17 +28,18 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
             {
                 if (subject != CollectionView.NewItemPlaceholder)
                 {
-                    if (MessageBox.Show($"Вы действильно хотите удалить {(subject as Subjects).name}?", "Подтверждение удаления", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    if (MessageBox.Show($"Вы действительно хотите удалить {(subject as Subjects).name}?", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         core.RemoveSubject(subject as Subjects);
                     }
                     else
                     {
-                        MessageBox.Show("Удаление отменено");
+                        MessageBox.Show("Удаление отменено", "Отмена", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }
-            dgSubjects.ItemsSource = core.GetPosts();
+            dgSubjects.ItemsSource = core.GetSubjects();
+            lbSubjectsCount.Content = $"Количество записей: {core.GetSubjects().Count}";
         }
 
         private void btnApply_Click(object sender, RoutedEventArgs e)
@@ -54,6 +59,7 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
                     }
                 }
             }
+            lbSubjectsCount.Content = $"Количество записей: {core.GetSubjects().Count}";
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)

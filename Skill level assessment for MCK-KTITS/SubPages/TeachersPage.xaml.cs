@@ -31,8 +31,10 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
             InitializeComponent();
             Teachers = core.GetTeachers();
             Core.AddNewItemEvent += Core_AddNewItemEvent;
-            teachersCount = Teachers.Count;
-            DataContext = this;
+            lbTeachersCount.Content = $"Количество записей: {core.GetTeachers().Count}";
+            this.DataContext = this;
+            if (CurrentUser.User.role_id == 3)
+                pageVsible.IsEnabled = false;
         }
 
         private void Core_AddNewItemEvent()
@@ -40,7 +42,7 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
             Teachers = core.GetTeachers();
             dgTeachers.ItemsSource = Teachers.ToList();
             dgTeachers.Items.Refresh();
-            lbTeachersCount.Content = Teachers.Count;
+            UpdateItemsCount();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -50,7 +52,27 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            foreach (var teacher in dgTeachers.SelectedItems)
+            {
+                if (teacher != CollectionView.NewItemPlaceholder)
+                {
+                    if (MessageBox.Show($"Вы действильно хотите удалить {(teacher as Teachers).name}?", "Подтверждение удаления", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        core.RemoveTeachers(teacher as Teachers);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Удаление отменено");
+                    }
+                }
+            }
+            dgTeachers.ItemsSource = core.GetTeachers();
+            UpdateItemsCount();
+        }
 
+        private void UpdateItemsCount()
+        {
+            lbTeachersCount.Content = $"Количество записей: {core.GetTeachers().Count}";
         }
 
         private void btnApply_Click(object sender, RoutedEventArgs e)

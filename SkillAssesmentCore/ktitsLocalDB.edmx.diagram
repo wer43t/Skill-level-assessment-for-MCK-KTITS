@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="eacfa834ead04260a9988a91ea04ccdf" Name="Diagram1">
+      <Diagram DiagramId="eacfa834ead04260a9988a91ea04ccdf" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="ktitsLocalDB.Categories" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ktitsLocalDB.Discticts" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ktitsLocalDB.Institution" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
@@ -16,6 +16,9 @@
         <AssociationConnector Association="ktitsLocalDB.FK_Teachers_Institution" ManuallyRouted="false" />
         <AssociationConnector Association="ktitsLocalDB.FK_Teachers_Posts" ManuallyRouted="false" />
         <AssociationConnector Association="ktitsLocalDB.FK_Teachers_Subjects" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ktitsLocalDB.Role" Width="1.5" PointX="5.375" PointY="1.375" />
+        <EntityTypeShape EntityType="ktitsLocalDB.Users" Width="1.5" PointX="7.625" PointY="1" />
+        <AssociationConnector Association="ktitsLocalDB.FK_Users_Role" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

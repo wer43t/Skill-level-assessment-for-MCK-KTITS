@@ -10,6 +10,7 @@ namespace SkillAssesmentCore
         public delegate void AddNewItemDelegate();
         public static event AddNewItemDelegate AddNewItemEvent;
 
+
         public ObservableCollection<Discticts> Discticts { get; set; }
 
         public ObservableCollection<Institution> Institutions { get; set; }
@@ -22,6 +23,10 @@ namespace SkillAssesmentCore
 
         public ObservableCollection<Teachers> Teachers { get; set; }
 
+        public ObservableCollection<Users> Users { get; set; }
+
+        public ObservableCollection<Role> Roles { get; set; }
+
         public ObservableCollection<Discticts> GetDiscticts()
         {
             return Discticts = new ObservableCollection<Discticts>(DBContext.localConnection.Discticts.ToList());
@@ -29,6 +34,7 @@ namespace SkillAssesmentCore
 
         public void AddDisctics(string name)
         {
+
             Discticts discticts = new Discticts()
             {
                 name = name
@@ -84,13 +90,13 @@ namespace SkillAssesmentCore
         public void RemoveInstitutions(Institution institution)
         {
             Institution tempInstitution;
-            using (var context = new Entities())
+            using (var context = new Entities1())
             {
                 tempInstitution = context.Institution.Where(d => d.name == institution.name).FirstOrDefault();
             }
             if (tempInstitution != null)
             {
-                using (var context = new Entities())
+                using (var context = new Entities1())
                 {
                     context.Institution.Attach(tempInstitution);
                     context.Institution.Remove(tempInstitution);
@@ -212,13 +218,13 @@ namespace SkillAssesmentCore
         public void RemoveCategory(Categories category)
         {
             Categories tempCategory;
-            using (var context = new Entities())
+            using (var context = new Entities1())
             {
                 tempCategory = context.Categories.Where(d => d.name == category.name).FirstOrDefault();
             }
-            if (category != null)
+            if (tempCategory != null)
             {
-                using (var context = new Entities())
+                using (var context = new Entities1())
                 {
                     context.Categories.Attach(tempCategory);
                     context.Categories.Remove(tempCategory);
@@ -258,6 +264,69 @@ namespace SkillAssesmentCore
             }
         }
 
+        public ObservableCollection<Users> GetUsers()
+        {
+            return Users = new ObservableCollection<Users>(DBContext.localConnection.Users);
+        }
+
+        public bool AddUsers(Users user)
+        {
+            if (user != null)
+            {
+
+                if(DBContext.localConnection.Users.Where(x => x.user_id == user.user_id).Count() == 0)
+                {
+                    DBContext.localConnection.Users.Add(user);
+                    AddNewItemEvent?.Invoke();
+                }
+                else
+                {
+                    DBContext.localConnection.Users.SingleOrDefault(x => x.user_id == user.user_id);
+                }
+                DBContext.localConnection.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public void RemoveUsers(Users user)
+        {
+            Users tempUser;
+            using (var context = new Entities1())
+            {
+                tempUser = context.Users.Where(d => d.user_id == user.user_id).FirstOrDefault();
+            }
+            if (tempUser != null)
+            {
+                using (var context = new Entities1())
+                {
+                    context.Users.Attach(tempUser);
+                    context.Users.Remove(tempUser);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public ObservableCollection<Role> GetRoles()
+        {
+            return Roles = new ObservableCollection<Role>(DBContext.localConnection.Role);
+        }
+
+        public bool IsUserCorrect(string login, string password)
+        {
+            return GetUser(login, password) != null;
+        }
+
+        public Users GetUser(string login, string password)
+        {
+            return GetUsers().Where(user => user.login == login && user.password == password).FirstOrDefault();
+        }
+
+        public bool TryLogin(string login, string password)
+        {
+            return GetUsers().Where(user => user.login == login && user.password == password).Count() == 1;
+        }
+
         public List<ValidationResult> ValidateTeacher(Teachers teacher)
         {
             var results = new List<ValidationResult>();
@@ -265,5 +334,58 @@ namespace SkillAssesmentCore
             Validator.TryValidateObject(teacher, context, results, true);
             return results;
         }
+
+        public List<ValidationResult> ValidateUser(Users user)
+        {
+            var results = new List<ValidationResult>();
+            var context = new ValidationContext(user);
+            Validator.TryValidateObject(user, context, results, true);
+            return results;
+        }
+
+        public string GetFullUserName()
+        {
+            return $"{CurrentUser.User.surname} {CurrentUser.User.name} {CurrentUser.User.patronymic} {CurrentUser.User.Role.name}";
+        }
+
+
+
+        //public List<ValidationResult> ValidateTeacher(Teachers teacher)
+        //{
+        //    var results = new List<ValidationResult>();
+        //    var context = new ValidationContext(teacher);
+        //    Validator.TryValidateObject(teacher, context, results, true);
+        //    return results;
+        //}
+
+        //public List<ValidationResult> ValidateTeacher(Teachers teacher)
+        //{
+        //    var results = new List<ValidationResult>();
+        //    var context = new ValidationContext(teacher);
+        //    Validator.TryValidateObject(teacher, context, results, true);
+        //    return results;
+        //}
+
+        //public List<ValidationResult> ValidateTeacher(Teachers teacher)
+        //{
+        //    var results = new List<ValidationResult>();
+        //    var context = new ValidationContext(teacher);
+        //    Validator.TryValidateObject(teacher, context, results, true);
+        //    return results;
+        //}
+
+        //public List<ValidationResult> ValidateTeacher(Teachers teacher)
+        //{
+        //    var results = new List<ValidationResult>();
+        //    var context = new ValidationContext(teacher);
+        //    Validator.TryValidateObject(teacher, context, results, true);
+        //    return results;
+        //}
+
+        public string GetFullNameTeacher(Teachers teachers)
+        {
+            return $"{teachers.surname} {teachers.name} {teachers.patronymic}";
+        }
+
     }
 }

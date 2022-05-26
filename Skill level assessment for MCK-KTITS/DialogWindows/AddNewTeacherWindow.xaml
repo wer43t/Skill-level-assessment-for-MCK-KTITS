@@ -79,8 +79,6 @@
                         <StackPanel>
                             <Label Content="Описание ошибки"/>
                             <Label Content="{Binding ErrorMessage}"/>
-                            <Label Content="Название полей"/>
-                            <ListView ItemsSource="{Binding MemberNames}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

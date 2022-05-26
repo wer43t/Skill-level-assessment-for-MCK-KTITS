@@ -12,11 +12,14 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
     public partial class InstitutionPage : Page
     {
         ObservableCollection<Discticts> discticts;
+        public int institutionCount { get; set; }
         Core core = new Core();
         public InstitutionPage()
         {
             InitializeComponent();
             UpdateDate(core.GetInstitutions());
+                        if (CurrentUser.User.role_id == 3)
+                pageVsible.IsEnabled = false;
         }
 
         private void dgInstitutions_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -50,6 +53,8 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
                 }
             }
             dgInstitutions.ItemsSource = core.GetInstitutions();
+            lbInstitutionsCount.Content = $"Количество записей: {core.GetInstitutions().Count}";
+
         }
 
         private void btnApply_Click(object sender, RoutedEventArgs e)
@@ -67,16 +72,13 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
             UpdateDate(core.GetInstitutions());
         }
 
-        private void cmBoxDistricts_ContextMenuOpening(object sender, ContextMenuEventArgs e)
-        {
-
-        }
 
         private void UpdateDate(ObservableCollection<Institution> institutions)
         {
             dgInstitutions.ItemsSource = institutions;
             discticts = core.GetDiscticts();
             cmBoxDistricts.ItemsSource = discticts;
+            lbInstitutionsCount.Content = $"Количество записей: {institutions.Count}";
 
         }
 

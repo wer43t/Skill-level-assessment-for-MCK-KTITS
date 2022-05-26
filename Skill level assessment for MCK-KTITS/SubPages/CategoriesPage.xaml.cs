@@ -22,10 +22,15 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
     public partial class CategoriesPage : Page
     {
         Core core = new Core();
+        public int categoriesCount { get; set; }
         public CategoriesPage()
         {
             InitializeComponent();
             dgCategories.ItemsSource = core.GetCategories();
+            lblCategoriesCount.Content = $"Количество записей: {core.GetCategories().Count}";
+            this.DataContext = this;
+            if (CurrentUser.User.role_id == 3)
+                pageVsible.IsEnabled = false;
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -49,7 +54,8 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
                     }
                 }
             }
-            dgCategories.ItemsSource = core.GetPosts();
+            dgCategories.ItemsSource = core.GetCategories();
+            lblCategoriesCount.Content = $"Количество записей: {core.GetCategories().Count}";
         }
 
         private void btnApply_Click(object sender, RoutedEventArgs e)
@@ -69,6 +75,8 @@ namespace Skill_level_assessment_for_MCK_KTITS.SubPages
                     }
                 }
             }
+            dgCategories.ItemsSource = core.GetCategories();
+            lblCategoriesCount.Content = $"Количество записей: {core.GetCategories().Count}";
         }
 
         private void dgCategories_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
