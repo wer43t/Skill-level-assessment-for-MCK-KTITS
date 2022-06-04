@@ -238,12 +238,24 @@ namespace SkillAssesmentCore
             return Teachers = new ObservableCollection<Teachers>(DBContext.localConnection.Teachers);
         }
 
-        public void AddTeachers(Teachers teacher)
+        public bool AddTeachers(Teachers teacher)
         {
             if (teacher != null)
-                DBContext.localConnection.Teachers.Add(teacher);
-            DBContext.localConnection.SaveChanges();
-            AddNewItemEvent?.Invoke();
+            {
+
+                if (DBContext.localConnection.Teachers.Where(x => x.teacher_id == teacher.teacher_id).Count() == 0)
+                {
+                    DBContext.localConnection.Teachers.Add(teacher);
+                    AddNewItemEvent?.Invoke();
+                }
+                else
+                {
+                    DBContext.localConnection.Teachers.SingleOrDefault(x => x.teacher_id == teacher.teacher_id);
+                }
+                DBContext.localConnection.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public void RemoveTeachers(Teachers teacher)
@@ -348,39 +360,11 @@ namespace SkillAssesmentCore
             return $"{CurrentUser.User.surname} {CurrentUser.User.name} {CurrentUser.User.patronymic} {CurrentUser.User.Role.name}";
         }
 
+        public string GetFullUserName(Users user)
+        {
+            return $"{user.surname} {user.name} {user.patronymic}";
+        }
 
-
-        //public List<ValidationResult> ValidateTeacher(Teachers teacher)
-        //{
-        //    var results = new List<ValidationResult>();
-        //    var context = new ValidationContext(teacher);
-        //    Validator.TryValidateObject(teacher, context, results, true);
-        //    return results;
-        //}
-
-        //public List<ValidationResult> ValidateTeacher(Teachers teacher)
-        //{
-        //    var results = new List<ValidationResult>();
-        //    var context = new ValidationContext(teacher);
-        //    Validator.TryValidateObject(teacher, context, results, true);
-        //    return results;
-        //}
-
-        //public List<ValidationResult> ValidateTeacher(Teachers teacher)
-        //{
-        //    var results = new List<ValidationResult>();
-        //    var context = new ValidationContext(teacher);
-        //    Validator.TryValidateObject(teacher, context, results, true);
-        //    return results;
-        //}
-
-        //public List<ValidationResult> ValidateTeacher(Teachers teacher)
-        //{
-        //    var results = new List<ValidationResult>();
-        //    var context = new ValidationContext(teacher);
-        //    Validator.TryValidateObject(teacher, context, results, true);
-        //    return results;
-        //}
 
         public string GetFullNameTeacher(Teachers teachers)
         {

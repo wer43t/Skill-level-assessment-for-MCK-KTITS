@@ -7,9 +7,13 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using System.Text.Json;
 
 namespace SkillLevelAssismentApi
 {
@@ -31,6 +35,8 @@ namespace SkillLevelAssismentApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SkillLevelAssismentApi", Version = "v1" });
             });
+            services.AddControllers().AddJsonOptions(x =>
+               x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

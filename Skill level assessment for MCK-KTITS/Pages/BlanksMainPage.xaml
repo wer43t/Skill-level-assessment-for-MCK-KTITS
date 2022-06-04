@@ -77,7 +77,7 @@
                     </StackPanel>
                     <Button Grid.Row="4" Content="Начать тестирование" x:Name="btnStart" Click="btnStart_Click" IsEnabled="False"/>
                     <Button Grid.Row="5" Content="Предпросмотр в Excel" x:Name="btnExport" Click="btnExport_Click" IsEnabled="False"/>
-                    <Button Grid.Row="6" Content="Печать экспертного листа" x:Name="btnPrinting" IsEnabled="False"/>
+                    <Button Grid.Row="6" Content="Печать экспертного листа" x:Name="btnPrinting" IsEnabled="False" Visibility="Hidden"/>
                 </Grid>
             </TabItem>
         </TabControl>

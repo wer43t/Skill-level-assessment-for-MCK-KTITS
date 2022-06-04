@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
             <ScrollViewer Grid.Row="1" Height="248">
-                <DataGrid x:Name="dgTeachers" ItemsSource="{Binding Teachers}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+                <DataGrid x:Name="dgTeachers" ItemsSource="{Binding Teachers}" FontSize="32" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Фамилия" Binding="{Binding surname}"/>
                         <DataGridTextColumn Header="Имя" Binding="{Binding name}"/>
@@ -35,9 +35,9 @@
             <Label x:Name="lbTeachersCount" Content="{Binding teachersCount}"></Label>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" FlowDirection="LeftToRight" Margin="20 0">
-            <Button Content="➕" Margin="10 0" x:Name="btnAdd"  Click="btnAdd_Click"/>
-            <Button Content="✖" x:Name="btnDelete" Click="btnDelete_Click"/>
-            <Button Content="✔" Margin="10 0" x:Name="btnApply" Click="btnApply_Click"/>
+            <Button Content="➕" Margin="10 0" x:Name="btnAdd"  Click="btnAdd_Click" ToolTip="Новая запись"/>
+            <Button Content="✖" x:Name="btnDelete" Click="btnDelete_Click" ToolTip="Удалить запись"/>
+            <Button Content="✔" Margin="10 0" x:Name="btnApply" Click="btnApply_Click" ToolTip="Сохранить запись"/>
             <Button Margin="30 0" x:Name="btnCreateTeacher" Content="Новая запись" Click="btnCreateTeacher_Click"/>
             </StackPanel>
     </Grid>

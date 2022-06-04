@@ -21,13 +21,13 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1">
             <ScrollViewer Grid.Row="1" Height="250">
-                <DataGrid x:Name="dgInstitutions" AutoGenerateColumns="True" AutoGeneratingColumn="dgInstitutions_AutoGeneratingColumn" AddingNewItem="dgInstitutions_AddingNewItem" />
+                <DataGrid x:Name="dgInstitutions" AutoGenerateColumns="True" FontSize="32" AutoGeneratingColumn="dgInstitutions_AutoGeneratingColumn" AddingNewItem="dgInstitutions_AddingNewItem" />
             </ScrollViewer>
-            <Label x:Name="lbInstitutionsCount" Content="{Binding institutionCount}"></Label>
+            <Label x:Name="lbInstitutionsCount" Content="{Binding institutionCount}" FontSize="32"></Label>
         </StackPanel>
         <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" Margin="50 0">
-            <Button Content="✖" x:Name="btnDelete" Click="btnDelete_Click"/>
-            <Button Content="✔" Margin="10 0" x:Name="btnApply" Click="btnApply_Click"/>
+            <Button Content="✖" x:Name="btnDelete" Click="btnDelete_Click" ToolTip="Удалить запись"/>
+            <Button Content="✔" Margin="10 0" x:Name="btnApply" Click="btnApply_Click" ToolTip="Сохранить запись"/>
             <Button Content="Новая запись" Width="150" x:Name="btnAdd" Click="btnAdd_Click"/>
             <Label Content="Выборка по районам" VerticalAlignment="Center" Margin="50 0 40 0"/>
             <ComboBox x:Name="cmBoxDistricts" Width="200" ItemsSource="{Binding disticts}" DataContextChanged="cmBoxDistricts_DataContextChanged" SelectionChanged="cmBoxDistricts_SelectionChanged">

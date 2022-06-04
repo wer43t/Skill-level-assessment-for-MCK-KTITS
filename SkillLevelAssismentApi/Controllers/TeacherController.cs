@@ -24,23 +24,13 @@ namespace SkillLevelAssismentApi.Controllers
         }
 
 
+        // GET: api/<TeacherController>
         [HttpGet]
-        public IEnumerable<Users> Get()
+        public IEnumerable<Teachers> Get()
         {
-            return core.GetUsers().ToArray();
-        }
-        /// <param name = "id" > Here is the description for ID.</param>
-        /// <param name = "id" > Here is the description for ID.</param>
-        /// <param name = "id" > Here is the description for ID.</param>
-        /// <param name = "id" > Here is the description for ID.</param>
-        /// <param name = "id" > Here is the description for ID.</param>
-        [ProducesResponseType(typeof(Users), (int)HttpStatusCode.OK)]
-        [HttpPost]
-        public async Task<IActionResult> AddUser([FromRoute] int id)
-        {
+            var tempUsersData = core.GetTeachers();
 
-            //core.AddUsers();
-            return Ok(new Users());
+            return tempUsersData; 
         }
     }
 }
